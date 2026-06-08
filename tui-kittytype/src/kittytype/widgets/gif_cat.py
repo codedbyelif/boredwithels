@@ -1,8 +1,8 @@
 """Gercek GIF'i terminalde oynatan widget.
 
-Her GIF karesi renkli yarim-blok (U+2580 '▀') karakterlerine cevrilir: bir karakter
-hucresi ust pikseli on-plan, alt pikseli arka-plan rengiyle gosterir -> 2 dikey piksel.
-Bu sayede her terminalde (sixel/protokol gerekmeden) renkli, animasyonlu gorunur.
+Her kare renkli yarim-blok karakterlerine cevrilir (ust yarim '▀', alt yarim '▄'):
+bir karakter hucresi = 2 dikey piksel. Saydam pikseller renksiz birakilir, boylece
+widget'in (aktif temanin) arka planini gosterir; GIF her temada dogru gorunur.
 """
 from __future__ import annotations
 
@@ -14,13 +14,14 @@ from rich.text import Text
 from textual.widgets import Static
 
 _GIF_PATH = Path(__file__).resolve().parent.parent / "data" / "hello-kitty.gif"
-_HALF = "▀"
+_UPPER = "▀"
+_LOWER = "▄"
+_ALPHA = 128  # bu degerin altindaki piksel saydam sayilir -> widget arka plani
 
-# (cols, bg) -> (frames, intervals) onbellegi (bir kez yukle)
-_cache: Dict[Tuple[int, Tuple[int, int, int]], Tuple[List[Text], List[float]]] = {}
+_cache: Dict[int, Tuple[List[Text], List[float]]] = {}
 
 
-def _hexrgb(p) -> str:
+def _hx(p) -> str:
     return f"#{p[0]:02x}{p[1]:02x}{p[2]:02x}"
 
 
@@ -32,56 +33,53 @@ def _frame_to_text(img, cols: int, rows: int) -> Text:
         ty = ry * 2
         for cx in range(cols):
             top = px[cx, ty]
-            bot = px[cx, ty + 1] if ty + 1 < h else top
-            text.append(_HALF, style=Style(color=_hexrgb(top), bgcolor=_hexrgb(bot)))
+            bot = px[cx, ty + 1] if ty + 1 < h else (0, 0, 0, 0)
+            top_op = top[3] >= _ALPHA
+            bot_op = bot[3] >= _ALPHA
+            if top_op and bot_op:
+                text.append(_UPPER, style=Style(color=_hx(top), bgcolor=_hx(bot)))
+            elif top_op:
+                text.append(_UPPER, style=Style(color=_hx(top)))   # alt yari = widget bg
+            elif bot_op:
+                text.append(_LOWER, style=Style(color=_hx(bot)))   # ust yari = widget bg
+            else:
+                text.append(" ")                                    # tamamen saydam
         if ry != rows - 1:
             text.append("\n")
     return text
 
 
-def load_frames(
-    cols: int, bg_rgb: Tuple[int, int, int]
-) -> Tuple[List[Text], List[float]]:
+def load_frames(cols: int) -> Tuple[List[Text], List[float]]:
     """GIF karelerini Rich Text listesine + saniye cinsinden kare surelerine cevirir.
 
-    Saydam pikseller `bg_rgb` (panel arka plani) ile harmanlanir, boylece kutuya kaynar.
     Pillow yoksa ImportError firlatir (cagiran taraf ASCII'ye duser).
     """
-    key = (cols, bg_rgb)
-    if key in _cache:
-        return _cache[key]
+    if cols in _cache:
+        return _cache[cols]
 
-    from PIL import Image, ImageSequence  # gecikmeli import: Pillow yoksa fallback
+    from PIL import Image, ImageSequence  # gecikmeli import
 
     im = Image.open(_GIF_PATH)
     w, h = im.size
-    # Yarim-blok: 1 karakter = 1px genis x 2px yuksek. Terminal hucresi ~2x uzun
-    # oldugundan en-boy korunur: rows = cols * (h/w) / 2.
-    rows = max(1, round(cols * h / (w * 2)))
+    rows = max(1, round(cols * h / (w * 2)))  # yarim-blok: rows = cols*(h/w)/2
     px_h = rows * 2
-    bg = Image.new("RGBA", (w, h), bg_rgb + (255,))
 
     frames: List[Text] = []
     intervals: List[float] = []
     for frame in ImageSequence.Iterator(im):
-        rgba = frame.convert("RGBA")
-        composed = Image.alpha_composite(bg, rgba).convert("RGB")
-        small = composed.resize((cols, px_h), Image.LANCZOS)
-        frames.append(_frame_to_text(small, cols, rows))
+        rgba = frame.convert("RGBA").resize((cols, px_h), Image.LANCZOS)
+        frames.append(_frame_to_text(rgba, cols, rows))
         dur = frame.info.get("duration", 100) or 100
         intervals.append(min(0.12, max(0.05, dur / 1000.0)))  # canli ama makul hiz
 
-    result = (frames, intervals)
-    _cache[key] = result
-    return result
+    _cache[cols] = (frames, intervals)
+    return _cache[cols]
 
 
 class GifCat(Static):
     """Yuklenen kareleri kendi surelerine gore donduren animasyonlu widget."""
 
-    def __init__(
-        self, frames: List[Text], intervals: List[float], **kwargs
-    ) -> None:
+    def __init__(self, frames: List[Text], intervals: List[float], **kwargs) -> None:
         super().__init__(frames[0], **kwargs)
         self._frames = frames
         self._intervals = intervals

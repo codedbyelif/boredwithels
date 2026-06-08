@@ -1,9 +1,11 @@
-"""Siyah + pembe tema ve karakter karakter renklendirme stilleri."""
+"""Temalar (siyah-pembe ve beyaz-pembe) + karakter karakter renklendirme stilleri."""
 from __future__ import annotations
 
 from rich.style import Style
+from textual.color import Color
 from textual.theme import Theme
 
+# Siyah + pembe (varsayilan / koyu)
 KITTYTYPE_THEME = Theme(
     name="kittytype",
     primary="#FF4FA3",      # sicak pembe - vurgular, basliklar, odak
@@ -19,11 +21,36 @@ KITTYTYPE_THEME = Theme(
     dark=True,
 )
 
-# TypingArea karakter stilleri (Rich Text ile satir ici uygulanir).
-# config.engine.CharStatus.value anahtarlariyla eslesir: pending / correct / incorrect.
-CHAR_STYLES = {
-    "pending": Style(color="#6B5563"),                       # soluk gri - henuz yazilmadi
-    "correct": Style(color="#F5E6EF"),                       # parlak - dogru
-    "incorrect": Style(color="#0A0A0A", bgcolor="#FF5C7A"),  # siyah/pembe-bg - hatali
-    "cursor": Style(color="#0A0A0A", bgcolor="#FF1E88", bold=True),  # imlec
-}
+# Beyaz + pembe (acik)
+KITTYTYPE_LIGHT_THEME = Theme(
+    name="kittytype-light",
+    primary="#D6206E",      # koyu pembe - beyaz uzerinde kontrast
+    secondary="#B05C86",    # mat mor-pembe
+    accent="#FF2D8E",       # sicak pembe imlec
+    foreground="#3A1E2E",   # koyu erik metin
+    background="#FFF5FA",   # beyaza yakin pembe ton
+    surface="#FFE7F1",      # acik pembe panel
+    panel="#FFD9EA",
+    success="#2EA043",
+    warning="#B26A00",
+    error="#E5484D",        # hata icin kirmizi
+    dark=False,
+)
+
+
+def char_styles(theme: Theme) -> dict:
+    """Aktif temaya gore TypingArea karakter stilleri (Rich Text ile satir ici uygulanir).
+
+    Renkler temadan turetildigi icin hem koyu hem acik temada okunakli kalir.
+    """
+    fg = theme.foreground or "#F5E6EF"
+    bg = theme.background or "#0A0A0A"
+    accent = theme.accent or theme.primary
+    error = theme.error or "#FF5C7A"
+    pending = Color.parse(fg).blend(Color.parse(bg), 0.55).hex  # soluk (henuz yazilmadi)
+    return {
+        "pending": Style(color=pending),
+        "correct": Style(color=fg),
+        "incorrect": Style(color=bg, bgcolor=error),
+        "cursor": Style(color=bg, bgcolor=accent, bold=True),
+    }

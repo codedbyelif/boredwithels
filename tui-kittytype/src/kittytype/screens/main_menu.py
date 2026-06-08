@@ -11,7 +11,6 @@ _EYES = ("o.o", "-.-", "o.o", "^.^")
 _ASCII_FRAMES = ["\n".join((r" /\_/\ ", f"( {e} )", r" > ^ < ")) for e in _EYES]
 
 _GIF_COLS = 36
-_SURFACE_RGB = (0x14, 0x10, 0x14)  # $surface (kutu arka plani)
 
 
 class MainMenuScreen(Screen):
@@ -35,7 +34,7 @@ class MainMenuScreen(Screen):
         try:
             from kittytype.widgets.gif_cat import GifCat, load_frames
 
-            frames, intervals = load_frames(_GIF_COLS, _SURFACE_RGB)
+            frames, intervals = load_frames(_GIF_COLS)
             box.mount(GifCat(frames, intervals, id="cat"))
         except Exception:
             # Fallback: animasyonlu ASCII kedi

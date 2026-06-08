@@ -2,6 +2,7 @@
 
 Input DEGIL: can_focus=True bir Widget + on_key. Cunku sabit hedef metni
 karakter karakter durumlandirmak bir 'render' problemidir, duzenleme alani degil.
+Renkler aktif temadan turetilir (char_styles), boylece koyu/acik temada okunakli kalir.
 """
 from __future__ import annotations
 
@@ -11,7 +12,7 @@ from textual.message import Message
 from textual.widget import Widget
 
 from kittytype.core.engine import TypingEngine
-from kittytype.theme import CHAR_STYLES
+from kittytype.theme import char_styles
 
 
 class TypingArea(Widget):
@@ -43,20 +44,17 @@ class TypingArea(Widget):
     def render(self) -> Text:
         engine = self.engine
         cursor = engine.cursor
+        styles = char_styles(self.app.current_theme)
         text = Text()
         for i, ch in enumerate(engine.target):
             at_cursor = i == cursor and not self._frozen
             if ch == "\n":
                 # Satir sonu: imlec buradaysa kucuk bir isaret goster, sonra satiri kir.
                 if at_cursor:
-                    text.append("↵", style=CHAR_STYLES["cursor"])
+                    text.append("↵", style=styles["cursor"])
                 text.append("\n")
                 continue
-            style = (
-                CHAR_STYLES["cursor"]
-                if at_cursor
-                else CHAR_STYLES[engine.status_at(i).value]
-            )
+            style = styles["cursor"] if at_cursor else styles[engine.status_at(i).value]
             text.append(ch, style=style)
         return text
 
