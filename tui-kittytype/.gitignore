@@ -1,0 +1,22 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.ruff_cache/
+.pytest_cache/
+.DS_Store
+
+# Editor / IDE (kişisel ayarlar)
+.vscode/
+.idea/
+*.swp
+
+# Misc
+*.log
+
+# Kök dizindeki yedek GIF (paket içindeki src/kittytype/data/hello-kitty.gif kullanılır)
+/hello-kittygif.gif
