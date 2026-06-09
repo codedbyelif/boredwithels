@@ -1,0 +1,47 @@
+#!/bin/bash
+# watch-together — Terminal-içi BİRLİKTE izleme (gerçek ortak oturum, tmate ile)
+#
+# Mantık: tmate ortak bir terminal oturumu açar. Sen bu oturumda yt-vscode ile
+# video oynatırsın; arkadaşın paylaşım LİNKİNDEN aynı terminali CANLI görür.
+# Gerçek senkron: ne görürsen aynısını, aynı anda görür.
+#
+# Kullanım:  watch-together
+#   1) Çalıştır, çıkan LİNKİ arkadaşına yolla (tarayıcı linki = kurulum gerekmez)
+#   2) Arkadaşın bağlandıktan sonra bu oturumda:  yt-vscode "video adı"
+#   3) İkiniz aynı görüntüyü görürsünüz. Çıkış: Ctrl+C sonra 'exit'
+
+export PATH="$HOME/.local/bin:/opt/homebrew/bin:$PATH"
+SOCK="/tmp/watch-together.sock"
+
+# Eski oturum varsa temizle
+tmate -S "$SOCK" kill-session 2>/dev/null
+rm -f "$SOCK"
+
+echo "Ortak izleme oturumu başlatılıyor..."
+tmate -S "$SOCK" new-session -d
+tmate -S "$SOCK" wait tmate-ready
+
+WEB_RO=$(tmate -S "$SOCK" display -p '#{tmate_web_ro}')
+SSH_RO=$(tmate -S "$SOCK" display -p '#{tmate_ssh_ro}')
+
+clear
+echo "═══════════════════════════════════════════════════════════════"
+echo "  youtube-terminal · codedbyelif"
+echo "  BİRLİKTE İZLEME HAZIR — bu linki arkadaşına yolla:"
+echo ""
+echo "  Tarayici (kolay, kurulum yok):"
+echo "     $WEB_RO"
+echo ""
+echo "  Terminal (SSH ile, salt-izleme):"
+echo "     $SSH_RO"
+echo "═══════════════════════════════════════════════════════════════"
+echo ""
+echo "  Arkadaşın bağlandıktan sonra, AŞAĞIDA video oynat:"
+echo "     yt-vscode \"video adı veya linki\""
+echo ""
+echo "  (Oturuma girmek için Enter'a bas. Çıkış: 'exit' yaz.)"
+echo "═══════════════════════════════════════════════════════════════"
+read -r _
+
+# Ortak oturuma bağlan (sen de içine gir)
+tmate -S "$SOCK" attach
