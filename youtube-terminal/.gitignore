@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*~
+
+# Runtime / temp (sockets & frame dumps created by yt-vscode)
+*.sock
+/tmp/ytv_*
+*.log
+
+# Local ytfzf cache (if anyone keeps it in-repo)
+conf.sh
