@@ -1,0 +1,40 @@
+#!/bin/bash
+# watch-together-lan — AYNI WIFI'da terminal-içi birlikte izleme (tmate.io GEREKMEZ)
+#
+# Mantık: yerel tmux oturumu açar. Arkadaşın aynı ağdan SSH ile bağlanıp
+# AYNI oturuma girer; ikiniz aynı ekranı görürsünüz. yt-vscode burada oynar.
+#
+# ÖN KOŞUL (bir kez): Mac'te "Uzaktan Oturum Açma" (Remote Login / SSH) açık olmalı:
+#   Sistem Ayarları > Genel > Paylaşım > Uzaktan Oturum Açma  -> AÇ
+#   (veya terminalde: sudo systemsetup -setremotelogin on)
+
+export PATH="$HOME/.local/bin:/opt/homebrew/bin:$PATH"
+SESSION="izle"
+IP=$(ipconfig getifaddr en0 2>/dev/null || ipconfig getifaddr en1 2>/dev/null)
+USER_NAME=$(whoami)
+
+clear
+echo "═══════════════════════════════════════════════════════════════"
+echo "  youtube-terminal · codedbyelif"
+echo "  AYNI WIFI'da BİRLİKTE İZLEME"
+echo ""
+echo "  Arkadaşın KENDİ terminaline şunu yazsın (aynı ağda olmalı):"
+echo ""
+echo "     ssh ${USER_NAME}@${IP} -t \"/opt/homebrew/bin/tmux attach -t ${SESSION}\""
+echo ""
+echo "  (Senin Mac şifreni soracak — ona güvendiğin biriyse ver.)"
+echo "  (Şifre yerine güvenli yol istersen bana söyle, SSH anahtarı kurarım.)"
+echo "═══════════════════════════════════════════════════════════════"
+echo ""
+echo "  Bağlandıktan sonra bu oturumda video oynat:"
+echo "     yt-vscode \"video adı\""
+echo ""
+echo "  Çıkış: Ctrl+C (video) sonra 'exit' (oturum)."
+echo "  (Oturuma girmek için Enter'a bas.)"
+echo "═══════════════════════════════════════════════════════════════"
+read -r _
+
+# Ortak tmux oturumu: varsa ona bağlan, yoksa oluştur.
+# PATH'i oturum içine göm ki SSH ile gelen arkadaş da yt-vscode'u bulsun.
+tmux set-environment -g PATH "$HOME/.local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin" 2>/dev/null
+tmux attach -t "$SESSION" 2>/dev/null || tmux new -s "$SESSION"
