@@ -1,0 +1,14 @@
+# Isletim sistemi / editor artiklari (depo geneli)
+.DS_Store
+*.swp
+.vscode/
+.idea/
+
+# Python (alt projelerin kendi .gitignore dosyalarina ek guvence)
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ruff_cache/
+.pytest_cache/
