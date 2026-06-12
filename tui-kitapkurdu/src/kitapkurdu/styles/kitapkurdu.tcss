@@ -1,0 +1,140 @@
+/* kitapkurdu - siyah + pembe tema. Renkler theme.py'deki Theme'den $degiskenler olarak gelir. */
+
+Screen {
+    background: $background;
+    color: $foreground;
+}
+
+.title {
+    width: 100%;
+    text-align: center;
+    color: $primary;
+    text-style: bold;
+    margin-bottom: 1;
+}
+
+Button {
+    border: round $primary;
+    background: $surface;
+    color: $foreground;
+}
+Button:hover {
+    background: $primary 20%;
+}
+Button:focus {
+    border: round $accent;
+    text-style: bold;
+}
+
+/* --- Kitaplik --- */
+#shelf {
+    height: 1fr;
+    padding: 1 2;
+}
+#logo {
+    width: 100%;
+    text-align: center;
+    color: $primary;
+    text-style: bold;
+}
+#tagline {
+    width: 100%;
+    text-align: center;
+    color: $secondary;
+    margin-bottom: 1;
+}
+#shelf-status {
+    color: $secondary;
+    margin: 1 0;
+}
+#shelf-list {
+    height: 1fr;
+    border: round $primary-darken-1;
+    background: $surface;
+}
+#shelf Button {
+    width: 100%;
+    margin-top: 1;
+}
+#credit {
+    width: 100%;
+    text-align: center;
+    color: $secondary;
+    text-style: italic;
+    margin-top: 1;
+}
+
+/* --- Arama --- */
+#search {
+    height: 1fr;
+    padding: 1 2;
+}
+#source {
+    layout: horizontal;
+    width: 100%;
+    height: auto;
+    background: $surface;
+    border: round $primary-darken-1;
+    margin-bottom: 1;
+}
+#source RadioButton {
+    width: 1fr;
+}
+#search Input {
+    border: round $primary;
+}
+#search-status {
+    color: $secondary;
+    margin: 1 0;
+}
+#results {
+    height: 1fr;
+    border: round $primary-darken-1;
+    background: $surface;
+}
+
+/* --- Dosya acma --- */
+#file-open {
+    height: 1fr;
+    padding: 1 2;
+}
+#file-status {
+    color: $secondary;
+    margin: 1 0;
+}
+#file-tree {
+    height: 1fr;
+    border: round $primary-darken-1;
+    background: $surface;
+}
+
+/* --- Okuma ekrani --- */
+#reader {
+    height: 1fr;
+    padding: 1 2;
+}
+#reader-title {
+    width: 100%;
+    text-align: center;
+    color: $primary;
+    text-style: bold;
+    margin-bottom: 1;
+}
+#reader-center {
+    height: 1fr;
+    width: 100%;
+}
+#page {
+    width: 78;
+    max-width: 100%;
+    height: 1fr;
+    border: round $primary;
+    background: $surface;
+    padding: 1 2;
+}
+#reader-status {
+    width: 100%;
+    text-align: center;
+    color: $secondary;
+    margin-top: 1;
+}

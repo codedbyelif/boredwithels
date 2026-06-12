@@ -1,0 +1,31 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "kitapkurdu"
+version = "0.1.0"
+description = "Terminalde calisan siyah-pembe temali kitap okuyucu: Project Gutenberg'den kitap arayip indirir, kaldigin yeri hatirlar."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Elif Kaynar" }]
+keywords = ["ebook", "reader", "tui", "terminal", "textual", "gutenberg"]
+dependencies = [
+    "textual~=8.2",
+    "httpx>=0.27",
+    "pypdf>=4",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff"]
+
+[project.scripts]
+kitapkurdu = "kitapkurdu.app:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/kitapkurdu"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
