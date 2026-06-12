@@ -6,7 +6,7 @@ from textual.containers import Vertical
 from textual.screen import Screen
 from textual.widgets import Button, Footer, Header, ListItem, ListView, Static
 
-from kitapkurdu.library import LibraryBook
+from bookworm.library import LibraryBook
 
 _EMPTY_HINT = "Kitaplığın boş. 🔍 ile Project Gutenberg'den kitap ara!"
 
@@ -28,7 +28,7 @@ class BookshelfScreen(Screen):
     def compose(self) -> ComposeResult:
         yield Header(show_clock=False)
         with Vertical(id="shelf"):
-            yield Static("📚  kitapkurdu", id="logo")
+            yield Static("📚  bookworm", id="logo")
             yield Static("terminalde kitap oku", id="tagline")
             yield Static(_EMPTY_HINT, id="shelf-status")
             yield ListView(id="shelf-list")
@@ -61,7 +61,7 @@ class BookshelfScreen(Screen):
     def on_list_view_selected(self, event: ListView.Selected) -> None:
         item = event.item
         if isinstance(item, BookItem):
-            from kitapkurdu.screens.reader import ReaderScreen
+            from bookworm.screens.reader import ReaderScreen
 
             self.app.push_screen(ReaderScreen(item.book))
 
@@ -72,12 +72,12 @@ class BookshelfScreen(Screen):
             self.action_open_file()
 
     def action_open_search(self) -> None:
-        from kitapkurdu.screens.search import SearchScreen
+        from bookworm.screens.search import SearchScreen
 
         self.app.push_screen(SearchScreen())
 
     def action_open_file(self) -> None:
-        from kitapkurdu.screens.file_open import FileOpenScreen
+        from bookworm.screens.file_open import FileOpenScreen
 
         self.app.push_screen(FileOpenScreen())
 

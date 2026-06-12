@@ -36,15 +36,15 @@ biri ise kabuk betiklerinden oluşan bir araç takımıdır.
 
 ```
 boredwithels/
-├── tui-kitapkurdu/    Terminal kitap okuyucu (Python, Textual)
+├── tui-bookworm/    Terminal kitap okuyucu (Python, Textual)
 ├── tui-kittytype/     Terminal yazma hızı testi (Python, Textual)
 └── youtube-terminal/  Terminalde YouTube oynatıcı ve birlikte izleme (Shell)
 ```
 
-### tui-kitapkurdu — terminal kitap okuyucu
+### tui-bookworm — terminal kitap okuyucu
 
 Çevrim içi kaynaklarda kitap arayan, indiren ve terminalde sayfa sayfa
-okutan bir uygulamadır. Ayrıntılar için [tui-kitapkurdu/README.md](tui-kitapkurdu/README.md)
+okutan bir uygulamadır. Ayrıntılar için [tui-bookworm/README.md](tui-bookworm/README.md)
 dosyasına bakınız.
 
 Öne çıkan özellikler:
@@ -70,10 +70,10 @@ Gereksinimler: Python 3.9+, ağ bağlantısı (yalnızca arama ve indirme
 için). Hızlı başlangıç:
 
 ```sh
-cd tui-kitapkurdu
+cd tui-bookworm
 python3 -m venv .venv && source .venv/bin/activate
 pip install -e .
-kitapkurdu
+bookworm
 ```
 
 ### tui-kittytype — terminal yazma hızı testi
@@ -164,16 +164,16 @@ is a toolset composed of shell scripts.
 
 ```
 boredwithels/
-├── tui-kitapkurdu/    Terminal book reader (Python, Textual)
+├── tui-bookworm/    Terminal book reader (Python, Textual)
 ├── tui-kittytype/     Terminal typing-speed test (Python, Textual)
 └── youtube-terminal/  YouTube player and watch-together in the terminal (Shell)
 ```
 
-### tui-kitapkurdu — terminal book reader
+### tui-bookworm — terminal book reader
 
 An application that searches online sources, downloads books and presents
 them page by page in the terminal. See
-[tui-kitapkurdu/README.md](tui-kitapkurdu/README.md) for details.
+[tui-bookworm/README.md](tui-bookworm/README.md) for details.
 
 Highlights:
 
@@ -199,10 +199,10 @@ Requirements: Python 3.9+; a network connection is needed only for
 searching and downloading. Quick start:
 
 ```sh
-cd tui-kitapkurdu
+cd tui-bookworm
 python3 -m venv .venv && source .venv/bin/activate
 pip install -e .
-kitapkurdu
+bookworm
 ```
 
 ### tui-kittytype — terminal typing-speed test

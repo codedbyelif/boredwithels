@@ -12,13 +12,13 @@ from typing import List, Union
 
 import httpx
 
-from kitapkurdu import __version__
-from kitapkurdu.archiveorg.models import ArchiveBook
+from bookworm import __version__
+from bookworm.archiveorg.models import ArchiveBook
 
 _SEARCH_URL = "https://archive.org/advancedsearch.php"
 _METADATA_URL = "https://archive.org/metadata/{identifier}"
 _DOWNLOAD_URL = "https://archive.org/download/{identifier}/{name}"
-_USER_AGENT = f"kitapkurdu/{__version__} (https://github.com/elifkaynar)"
+_USER_AGENT = f"bookworm/{__version__} (https://github.com/elifkaynar)"
 _SEARCH_TIMEOUT = 30.0
 _DOWNLOAD_TIMEOUT = 180.0
 

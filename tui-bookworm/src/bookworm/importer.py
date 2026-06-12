@@ -17,7 +17,7 @@ from typing import Tuple
 
 import httpx
 
-from kitapkurdu.wikisource.client import html_to_text
+from bookworm.wikisource.client import html_to_text
 
 SUPPORTED_EXTENSIONS = (".pdf", ".epub", ".txt", ".md")
 

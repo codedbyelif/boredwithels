@@ -12,11 +12,11 @@ from typing import List
 
 import httpx
 
-from kitapkurdu import __version__
-from kitapkurdu.wikisource.models import WikisourceBook
+from bookworm import __version__
+from bookworm.wikisource.models import WikisourceBook
 
 _API_URL = "https://tr.wikisource.org/w/api.php"
-_USER_AGENT = f"kitapkurdu/{__version__} (https://github.com/elifkaynar)"
+_USER_AGENT = f"bookworm/{__version__} (https://github.com/elifkaynar)"
 _TIMEOUT = 30.0
 
 # Bu siniflari tasiyan elemanlar metne alinmaz: baslik sablonu, gezinme,

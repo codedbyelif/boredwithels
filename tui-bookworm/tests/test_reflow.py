@@ -1,5 +1,5 @@
 """Akis duzeni (reflow) testleri."""
-from kitapkurdu.reflow import build_lines
+from bookworm.reflow import build_lines
 
 # ~60 sutuna sert kirilmis tipik Gutenberg/OCR paragrafi
 PROSE = (

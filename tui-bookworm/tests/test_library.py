@@ -1,5 +1,5 @@
 """Kitaplik kayit/yukleme ve ilerleme testleri."""
-from kitapkurdu.library import Library
+from bookworm.library import Library
 
 
 def _add_sample(library: Library):
@@ -57,9 +57,9 @@ def test_remove_deletes_file(tmp_path):
 def test_settings_roundtrip(tmp_path):
     library = Library(data_dir=tmp_path)
     assert library.load_setting("theme") is None
-    assert library.load_setting("theme", "kitapkurdu") == "kitapkurdu"
-    library.save_setting("theme", "kitapkurdu-sepya")
-    assert Library(data_dir=tmp_path).load_setting("theme") == "kitapkurdu-sepya"
+    assert library.load_setting("theme", "bookworm") == "bookworm"
+    library.save_setting("theme", "bookworm-sepia")
+    assert Library(data_dir=tmp_path).load_setting("theme") == "bookworm-sepia"
     # bozuk ayar dosyasi sessizce yoksayilir
     library.settings_file.write_text("{bozuk", encoding="utf-8")
     assert library.load_setting("theme") is None

@@ -1,4 +1,4 @@
-/* kitapkurdu - siyah + pembe tema. Renkler theme.py'deki Theme'den $degiskenler olarak gelir. */
+/* bookworm - siyah + pembe tema. Renkler theme.py'deki Theme'den $degiskenler olarak gelir. */
 
 Screen {
     background: $background;

@@ -3,7 +3,7 @@ import zipfile
 
 import pytest
 
-from kitapkurdu.importer import ImportFailed, book_id_for, import_file
+from bookworm.importer import ImportFailed, book_id_for, import_file
 
 # --- yardimcilar: testte gercek mini dosyalar uretilir ---
 

@@ -1,4 +1,4 @@
-"""Yerel kitaplik: indirilen kitaplar + okuma ilerlemesi (~/.kitapkurdu altinda JSON)."""
+"""Yerel kitaplik: indirilen kitaplar + okuma ilerlemesi (~/.bookworm altinda JSON)."""
 from __future__ import annotations
 
 import json
@@ -36,7 +36,13 @@ class Library:
     """library.json'u yukler/kaydeder, kitap metin dosyalarini yonetir."""
 
     def __init__(self, data_dir: Optional[Path] = None) -> None:
-        self.data_dir = data_dir or Path.home() / ".kitapkurdu"
+        if data_dir is None:
+            data_dir = Path.home() / ".bookworm"
+            legacy = Path.home() / ".kitapkurdu"
+            # Uygulamanin onceki adindan tek seferlik veri tasima
+            if legacy.is_dir() and not data_dir.exists():
+                legacy.rename(data_dir)
+        self.data_dir = data_dir
         self.books_dir = self.data_dir / "books"
         self.file = self.data_dir / "library.json"
         self.settings_file = self.data_dir / "settings.json"

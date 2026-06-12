@@ -1,6 +1,6 @@
 """Archive.org ayristirma ve OCR temizligi testleri (ag gerektirmez)."""
-from kitapkurdu.archiveorg.client import _parse_docs, clean_ocr
-from kitapkurdu.archiveorg.models import ArchiveBook
+from bookworm.archiveorg.client import _parse_docs, clean_ocr
+from bookworm.archiveorg.models import ArchiveBook
 
 
 def test_parse_docs_handles_list_fields():

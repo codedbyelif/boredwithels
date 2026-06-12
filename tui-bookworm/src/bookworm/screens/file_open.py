@@ -10,7 +10,7 @@ from textual.containers import Vertical
 from textual.screen import Screen
 from textual.widgets import DirectoryTree, Footer, Header, Static
 
-from kitapkurdu import importer
+from bookworm import importer
 
 
 class BookFileTree(DirectoryTree):
@@ -70,6 +70,6 @@ class FileOpenScreen(Screen):
         self.app.call_from_thread(self._open_reader, book)
 
     def _open_reader(self, book) -> None:
-        from kitapkurdu.screens.reader import ReaderScreen
+        from bookworm.screens.reader import ReaderScreen
 
         self.app.switch_screen(ReaderScreen(book))

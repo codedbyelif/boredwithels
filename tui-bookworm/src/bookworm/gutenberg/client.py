@@ -12,12 +12,12 @@ from typing import List, Optional
 
 import httpx
 
-from kitapkurdu import __version__
-from kitapkurdu.gutenberg.models import GutenbergBook
+from bookworm import __version__
+from bookworm.gutenberg.models import GutenbergBook
 
 _GUTENDEX_URL = "https://gutendex.com/books"
 _OPDS_URL = "https://www.gutenberg.org/ebooks/search.opds/"
-_USER_AGENT = f"kitapkurdu/{__version__} (https://github.com/elifkaynar)"
+_USER_AGENT = f"bookworm/{__version__} (https://github.com/elifkaynar)"
 # Gutendex su siralar cok yavas; kisa surede yanit vermezse OPDS'ye gecilir
 _GUTENDEX_TIMEOUT = 6.0
 _OPDS_TIMEOUT = 20.0

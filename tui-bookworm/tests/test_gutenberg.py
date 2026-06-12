@@ -1,5 +1,5 @@
 """Gutendex/OPDS ayristirma ve lisans kalibi ayiklama testleri (ag gerektirmez)."""
-from kitapkurdu.gutenberg.client import _parse_book, _parse_opds, _plain_text_url, strip_boilerplate
+from bookworm.gutenberg.client import _parse_book, _parse_opds, _plain_text_url, strip_boilerplate
 
 SAMPLE_ITEM = {
     "id": 1342,

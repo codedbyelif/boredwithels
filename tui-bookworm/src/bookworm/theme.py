@@ -4,8 +4,8 @@ from __future__ import annotations
 from textual.theme import Theme
 
 # Siyah + pembe (varsayilan / koyu)
-KITAPKURDU_THEME = Theme(
-    name="kitapkurdu",
+BOOKWORM_THEME = Theme(
+    name="bookworm",
     primary="#FF4FA3",      # sicak pembe - vurgular, basliklar, odak
     secondary="#FF8FC7",    # acik pembe - ikincil metin
     accent="#FF1E88",       # aktif vurgu
@@ -21,8 +21,8 @@ KITAPKURDU_THEME = Theme(
 
 # Gece (goz yormayan koyu tema): simsiyah yerine sicak koyu kahve zemin,
 # bembeyaz yerine krem-kehribar metin. Karanlik ortamda parlama yapmaz.
-KITAPKURDU_NIGHT_THEME = Theme(
-    name="kitapkurdu-gece",
+BOOKWORM_NIGHT_THEME = Theme(
+    name="bookworm-night",
     primary="#D9A05B",      # kehribar - basliklar, vurgular
     secondary="#A98F6C",    # mat kum - ikincil metin
     accent="#E3B341",       # sicak sari vurgu
@@ -38,8 +38,8 @@ KITAPKURDU_NIGHT_THEME = Theme(
 
 # Sepya (goz yormayan okuma temasi): krem zemin + koyu kahve metin,
 # e-murekkep okuyucularin klasik duzeni. Kontrast dusuk, sicak tonlar.
-KITAPKURDU_SEPIA_THEME = Theme(
-    name="kitapkurdu-sepya",
+BOOKWORM_SEPIA_THEME = Theme(
+    name="bookworm-sepia",
     primary="#9C5B45",      # sicak kiremit - basliklar, vurgular
     secondary="#8A715A",    # mat kahve - ikincil metin
     accent="#B5654A",       # aktif vurgu
@@ -54,8 +54,8 @@ KITAPKURDU_SEPIA_THEME = Theme(
 )
 
 # Beyaz + pembe (acik)
-KITAPKURDU_LIGHT_THEME = Theme(
-    name="kitapkurdu-light",
+BOOKWORM_LIGHT_THEME = Theme(
+    name="bookworm-light",
     primary="#D6206E",      # koyu pembe - beyaz uzerinde kontrast
     secondary="#B05C86",    # mat mor-pembe
     accent="#FF2D8E",       # sicak pembe vurgu

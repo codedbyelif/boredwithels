@@ -15,8 +15,8 @@ from textual.containers import Center, Vertical
 from textual.screen import Screen
 from textual.widgets import Footer, Static
 
-from kitapkurdu.library import LibraryBook
-from kitapkurdu.reflow import build_lines
+from bookworm.library import LibraryBook
+from bookworm.reflow import build_lines
 
 _MIN_WIDTH = 20
 _MIN_HEIGHT = 4

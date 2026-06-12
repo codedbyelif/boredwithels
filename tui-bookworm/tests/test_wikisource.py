@@ -1,11 +1,11 @@
 """Vikikaynak HTML ayristirma ve arama sonucu indirgeme testleri (ag gerektirmez)."""
-from kitapkurdu.wikisource.client import (
+from bookworm.wikisource.client import (
     _collapse_results,
     _natural_key,
     extract_author,
     html_to_text,
 )
-from kitapkurdu.wikisource.models import WikisourceBook
+from bookworm.wikisource.models import WikisourceBook
 
 SAMPLE_HTML = """<div class="mw-parser-output">
 <div id="headerContainer" class="ws-noexport notheme noprint">

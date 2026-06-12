@@ -1,10 +1,10 @@
-# kitapkurdu
+# bookworm
 
 Terminal üzerinde çalışan, metin tabanlı (TUI) bir kitap okuyucudur.
 Elif Kaynar tarafından Python ve Textual çatısı kullanılarak
 geliştirilmiştir.
 
-kitapkurdu is a terminal-based (TUI) book reader developed by Elif Kaynar
+bookworm is a terminal-based (TUI) book reader developed by Elif Kaynar
 using Python and the Textual framework.
 
 [Türkçe](#türkçe) · [English](#english)
@@ -15,7 +15,7 @@ using Python and the Textual framework.
 
 ### Hakkında
 
-kitapkurdu; Vikikaynak, Project Gutenberg ve Archive.org üzerinde arama
+bookworm; Vikikaynak, Project Gutenberg ve Archive.org üzerinde arama
 yapar, seçilen eseri indirir ve okuma ilerlemesini kalıcı olarak saklar.
 Yerel diskteki PDF, EPUB ve düz metin dosyalarını da aynı okuyucu
 arayüzünde açar. Tüm işlemler terminalden, uygulama dışına çıkmadan
@@ -61,10 +61,10 @@ ve sonraki açılışta uygulanır.
 Python 3.9 veya üzeri gerektirir.
 
 ```sh
-cd tui-kitapkurdu
+cd tui-bookworm
 python3 -m venv .venv && source .venv/bin/activate
 pip install -e .
-kitapkurdu
+bookworm
 ```
 
 ### Kısayollar
@@ -84,7 +84,7 @@ kitapkurdu
 
 ### Veri konumu
 
-Kitap metinleri, ilerleme bilgileri ve tema tercihi `~/.kitapkurdu/`
+Kitap metinleri, ilerleme bilgileri ve tema tercihi `~/.bookworm/`
 dizininde tutulur. Dizin silindiğinde tüm veriler kaybolur.
 
 ### Sınırlamalar
@@ -114,7 +114,7 @@ ruff check .    # statik denetim
 
 ### About
 
-kitapkurdu searches Wikisource, Project Gutenberg and Archive.org,
+bookworm searches Wikisource, Project Gutenberg and Archive.org,
 downloads the selected work and stores reading progress persistently.
 It also opens local PDF, EPUB and plain-text files in the same reader
 interface. All operations take place in the terminal, without leaving
@@ -161,10 +161,10 @@ and restored on the next launch.
 Requires Python 3.9 or later.
 
 ```sh
-cd tui-kitapkurdu
+cd tui-bookworm
 python3 -m venv .venv && source .venv/bin/activate
 pip install -e .
-kitapkurdu
+bookworm
 ```
 
 ### Key bindings
@@ -185,7 +185,7 @@ kitapkurdu
 ### Data location
 
 Book texts, progress records and the theme preference are kept under
-`~/.kitapkurdu/`. Deleting this directory removes all data.
+`~/.bookworm/`. Deleting this directory removes all data.
 
 ### Limitations
 

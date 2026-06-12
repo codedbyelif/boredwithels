@@ -14,13 +14,13 @@ from textual.containers import Vertical
 from textual.screen import Screen
 from textual.widgets import Footer, Header, Input, ListItem, ListView, RadioButton, RadioSet, Static
 
-from kitapkurdu import importer
-from kitapkurdu.archiveorg import client as archiveorg
-from kitapkurdu.archiveorg.models import ArchiveBook
-from kitapkurdu.gutenberg import client as gutendex
-from kitapkurdu.gutenberg.models import GutenbergBook
-from kitapkurdu.wikisource import client as wikisource
-from kitapkurdu.wikisource.models import WikisourceBook
+from bookworm import importer
+from bookworm.archiveorg import client as archiveorg
+from bookworm.archiveorg.models import ArchiveBook
+from bookworm.gutenberg import client as gutendex
+from bookworm.gutenberg.models import GutenbergBook
+from bookworm.wikisource import client as wikisource
+from bookworm.wikisource.models import WikisourceBook
 
 AnyBook = Union[GutenbergBook, WikisourceBook, ArchiveBook]
 
@@ -188,6 +188,6 @@ class SearchScreen(Screen):
         self.app.call_from_thread(self._open_reader, existing)
 
     def _open_reader(self, book) -> None:
-        from kitapkurdu.screens.reader import ReaderScreen
+        from bookworm.screens.reader import ReaderScreen
 
         self.app.switch_screen(ReaderScreen(book))

@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "kitapkurdu"
+name = "bookworm"
 version = "0.1.0"
 description = "Terminalde calisan siyah-pembe temali kitap okuyucu: Project Gutenberg'den kitap arayip indirir, kaldigin yeri hatirlar."
 readme = "README.md"
@@ -21,10 +21,10 @@ dependencies = [
 dev = ["pytest", "ruff"]
 
 [project.scripts]
-kitapkurdu = "kitapkurdu.app:main"
+bookworm = "bookworm.app:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/kitapkurdu"]
+packages = ["src/bookworm"]
 
 [tool.ruff]
 line-length = 100
